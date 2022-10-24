@@ -37,6 +37,7 @@ exports.getIndex = (req, res, next) => {
   //       });
   Product.fetchAll()
     .then(products => {
+      res.setHeader('Set-Cookie', 'loggedIn=true; HttpOnly');
         res.render('shop/index', {
             prods: products,
             pageTitle: 'Product info',

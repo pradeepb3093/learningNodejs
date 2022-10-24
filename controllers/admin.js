@@ -15,7 +15,7 @@ exports.addProduct = (req, res, next) => {
     const price = req.body.price;
     const description = req.body.description;
 
-    const product = new Product(title, imageUrl, price, description);
+    const product = new Product(title, imageUrl, price, description, null, req.user._id);
     product.save()
     .then(result => res.redirect('/admin/products'))
     .catch(err => console.log(err));
@@ -51,7 +51,7 @@ exports.postEditProduct = (req, res, next) => {
     const price = req.body.price;
     const description = req.body.description;
    
-    const updatedProduct = new Product(title, imageUrl, price, description, id);
+    const updatedProduct = new Product(title, imageUrl, price, description, id, req.user._id);
     updatedProduct.save()
         .then(result => res.redirect('/admin/products'))
         .catch(err => console.log(err));
